@@ -10,19 +10,33 @@ const scene = new THREE.Scene()
 /**
  * Objects
  */
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh = new THREE.Mesh(geometry, material)
+const group = new THREE.Group()
+scene.add(group)
 
 
-mesh.position.x = 0.7
-mesh.position.y = - 0.6
-mesh.position.z = 1
+const cube1 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xff0000 })
+)
+cube1.position.x = -2
+group.add(cube1)
 
-// quick code
-// mesh.position.set(0.7, - 0.6, 1)
+const cube2 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x0000ff })
+)
 
-scene.add(mesh)
+cube2.position.x = 2
+group.add(cube2)
+
+const cube3 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+)
+
+group.add(cube3)
+
+group.position.y = 1
 
 // Axes Helper
 
@@ -42,10 +56,10 @@ const sizes = {
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.set(1, 1, 3)
+camera.position.set(0, 0, 4)
 scene.add(camera)
 
-console.log(mesh.position.distanceTo(camera.position))
+
 /**
  * Renderer
  */
